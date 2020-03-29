@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
+const Firestore = require("@google-cloud/firestore")
 const serviceAccount = require("./ServiceAccountKey.json")
-const { players } = require("./commands/queue")
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -10,6 +10,7 @@ admin.initializeApp({
 const db = admin.firestore()
 
 module.exports = {
+    Firestore,
     test: () => {
         return db.collection("test").add({word: "hello"})
     },
@@ -21,9 +22,11 @@ module.exports = {
     },
     register: id => {
         return db.collection("users").doc(id).set({
+            id,
             wins: 0,
-            lost: 0,
-            elo: 1200
+            losses: 0,
+            elo: 1200,
+            winStreak: 0
         })
     },
     findCurrentGame: () => {
