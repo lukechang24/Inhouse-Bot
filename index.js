@@ -31,4 +31,3 @@ bot.on("message", async msg => {
 })
 
 bot.login(TOKEN);
-require('http').createServer().listen(3000)
