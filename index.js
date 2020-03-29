@@ -3,13 +3,13 @@ const Discord = require("discord.js")
 const bot = new Discord.Client()
 bot.commands = new Discord.Collection()
 const botCommands = require("./commands")
-const firebase = require("./commands/firebase")
-const TOKEN = process.env.TOKEN
+const firebase = require("./firebase")
 
 Object.keys(botCommands).map(key => {
     bot.commands.set(botCommands[key].name, botCommands[key])
 })
 
+const TOKEN = process.env.TOKEN
 
 bot.on("ready", () => {
     console.info(`${bot.user.tag} is ready to roll!`)
