@@ -6,7 +6,7 @@ module.exports = {
     execute(msg, args, bot, firebase) {
         firebase.findCurrentGame().get()
             .then(game => {
-                if(game.size === 1) {
+                if(game.size >= 1) {
                     game.forEach(snap => {
                         if(msg.author.id === snap.data().creator) {
                             firebase.findCurrentGame().doc(snap.id).delete()

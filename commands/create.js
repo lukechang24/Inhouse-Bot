@@ -8,7 +8,7 @@ module.exports = {
             .then(user => {
                 if(user.exists) {
                     firebase.findCurrentGame().get()
-                        .then(game => {
+                        .then(async game => {
                             if(game.size === 0) {
                                 firebase.createGame({
                                     players: [],
@@ -17,9 +17,12 @@ module.exports = {
                                     winner: null,
                                     creator: msg.author.id
                                 })
-                                msg.channel.send("```Inhouse lobby created. Type '!queue' to join the game, or '!cancel' to drop this inhouse```")
+                                msg.channel.send("```Inhouse lobby created. Type '!queue' to join the game, or '!cancel' to call off the inhouse```")
                             } else {
-                                msg.reply("A game is already being hosted by...")
+                                const creator = await bot.users.fetch(game.docs[0].data().creator).then(user => {
+                                    return user.username
+                                })
+                                msg.reply(`A game is already being hosted by ${creator}`)
                             }
                         })
                 } else {
