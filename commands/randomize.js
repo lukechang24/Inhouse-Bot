@@ -48,14 +48,18 @@ module.exports = {
                                     let teamOne = ""
                                     let teamTwo = ""
                                     for(let i = 0; i < team1.length; i++) {
-                                        const username1 = await bot.users.fetch(team1[i].id).then(user => {
-                                            return user.username
-                                        })
-                                        const username2 = await bot.users.fetch(team2[i].id).then(user => {
-                                            return user.username
-                                        })
-                                        teamOne += `${username1} (${team1[i].elo})${team1[i].id === snap.data().creator ? "(L)" : ""}\n`
-                                        teamTwo += `${username2} (${team2[i].elo})${team2[i].id === snap.data().creator ? "(L)" : ""}\n`
+                                        try {
+                                            const username1 = await bot.users.fetch(team1[i].id).then(user => {
+                                                return user.username
+                                            })
+                                            const username2 = await bot.users.fetch(team2[i].id).then(user => {
+                                                return user.username
+                                            })
+                                            teamOne += `${username1} (${team1[i].elo})${team1[i].id === snap.data().creator ? "(L)" : ""}\n`
+                                            teamTwo += `${username2} (${team2[i].elo})${team2[i].id === snap.data().creator ? "(L)" : ""}\n`
+                                        } catch (error) {
+                                            console.log(error)
+                                        }
                                     }
                                     msg.channel.send(`\`\`\`TEAM 1 \n${teamOne} \n \nTEAM 2 \n${teamTwo} \nAfter the game, type '!winner team[x]' to record the results\`\`\``)
                                 })

@@ -17,15 +17,19 @@ module.exports = {
                     matchHistory += `${matches[i].date.toDate()} \nTEAM 1 ${matches[i].winner === "team1" ? "🥇" : ""}               TEAM 2 ${matches[i].winner === "team2" ? "🥇" : ""}\n`
                     let matchInfo = ""
                     for(let i = 0; i < matches[i].team1.length; i++) {
-                        const username1 = await bot.users.fetch(matches[i].team1[i].id).then(user => {
-                            return user.username
-                        })
-                        const username2 = await bot.users.fetch(matches[i].team2[i].id).then(user => {
-                            return user.username
-                        })
-                        matchInfo += `${username1}               ${username2} \n`
-                        if(i === matches[i].team1.length-1) {
-                            matchInfo += "\n"
+                        try {
+                            const username1 = await bot.users.fetch(matches[i].team1[i].id).then(user => {
+                                return user.username
+                            })
+                            const username2 = await bot.users.fetch(matches[i].team2[i].id).then(user => {
+                                return user.username
+                            })
+                            matchInfo += `${username1}               ${username2} \n`
+                            if(i === matches[i].team1.length-1) {
+                                matchInfo += "\n"
+                            }
+                        } catch (error) {
+                            console.log(error)
                         }
                     }
                     matchHistory += matchInfo

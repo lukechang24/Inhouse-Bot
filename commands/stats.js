@@ -8,11 +8,15 @@ module.exports = {
             .then(snap => {
                 if(snap.size >= 1) {
                     snap.forEach(async user => {
-                        const stats = user.data()
-                        const username = await bot.users.fetch(user.id).then(player => {
-                            return player.username
-                        })
-                        msg.reply(`\`\`\`${username}'s Profile \n\nElo: ${stats.elo} \nWins: ${stats.wins} \nLosses: ${stats.losses} \nWin streak: ${stats.winStreak}\`\`\``)
+                        try {
+                            const stats = user.data()
+                            const username = await bot.users.fetch(user.id).then(player => {
+                                return player.username
+                            })
+                            msg.reply(`\`\`\`${username}'s Profile \n\nElo: ${stats.elo} \nWins: ${stats.wins} \nLosses: ${stats.losses} \nWin streak: ${stats.winStreak}\`\`\``)
+                        } catch (error) {
+                            console.log(error)
+                        }
                     })
                 } else {
                     msg.reply("Unable to find that a player by that username in the database.")

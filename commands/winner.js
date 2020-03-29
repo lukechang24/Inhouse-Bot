@@ -74,14 +74,18 @@ module.exports = {
                                             difference2 = updatedUser.data().elo - team2[i].elo
                                             winStreak2 = updatedUser.data().winStreak >= 3 ? true : false
                                         })
-                                    const username1 = await bot.users.fetch(team1[i].id).then(user => {
-                                        return user.username
-                                    })    
-                                    const username2 = await bot.users.fetch(team2[i].id).then(user => {
-                                        return user.username
-                                    })
-                                    teamOne += `${username1} (${newElo1})(${difference1 > 0 ? `+${difference1}` : difference1}${winStreak1 ? "🔥" : ""})\n`
-                                    teamTwo += `${username2} (${newElo2})(${difference2 > 0 ? `+${difference2}` : difference2}${winStreak2 ? "🔥" : ""})\n`
+                                    try {
+                                        const username1 = await bot.users.fetch(team1[i].id).then(user => {
+                                            return user.username
+                                        })    
+                                        const username2 = await bot.users.fetch(team2[i].id).then(user => {
+                                            return user.username
+                                        })
+                                        teamOne += `${username1} (${newElo1})(${difference1 > 0 ? `+${difference1}` : difference1}${winStreak1 ? "🔥" : ""})\n`
+                                        teamTwo += `${username2} (${newElo2})(${difference2 > 0 ? `+${difference2}` : difference2}${winStreak2 ? "🔥" : ""})\n`
+                                    } catch (error) {
+                                        console.log(error)
+                                    }
                                 }
                                 msg.channel.send(`\`\`\`diff\nRESULTS \n\nTEAM 1 ${args[0] === "team1" ? "🥇" : ""} \n${teamOne} \n\nTEAM 2 ${args[0] === "team2" ? "🥇" : ""} \n${teamTwo}\`\`\``)
                                 await firebase.findMatchHistory().doc().set({

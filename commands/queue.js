@@ -18,10 +18,14 @@ module.exports = {
                                     playerIds.push(msg.author.id)
                                     players.push(user.data())
                                     for(let i = 0; i < playerIds.length; i++) {
-                                        const username = await bot.users.fetch(playerIds[i]).then(user => {
-                                            return user.username
-                                        })
-                                        playerNames += `${username} \n`
+                                        try {
+                                            const username = await bot.users.fetch(playerIds[i]).then(user => {
+                                                return user.username
+                                            })
+                                            playerNames += `${username} \n`
+                                        } catch (error) {
+                                            console.log(error)
+                                        }
                                     }
                                     if(playerIds.length === 10) {
                                         firebase.findCurrentGame().get()
