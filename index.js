@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 const bot = new Discord.Client()
 bot.commands = new Discord.Collection()
 const botCommands = require("./commands")
-const firebase = require("./firebase")
+const firebase = require("./commands/firebase")
 const TOKEN = process.env.TOKEN
 
 Object.keys(botCommands).map(key => {
