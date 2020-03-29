@@ -3,8 +3,12 @@ const Firestore = require("@google-cloud/firestore")
 const serviceAccount = require("./ServiceAccountKey.json")
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://inhouse-bot.firebaseio.com"
+    credential: admin.credential.cert({
+      "projectId": process.env.FIREBASE_PROJECT_ID,
+      "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      "clientEmail": process.env.FIREBASE_CLIENT_EMAIL,
+    }),
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
 });
 
 const db = admin.firestore()
