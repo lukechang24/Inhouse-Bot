@@ -17,7 +17,7 @@ module.exports = {
                                     winner: null,
                                     creator: msg.author.id
                                 })
-                                msg.channel.send("```Inhouse lobby created. Type '!queue' to join the game```")
+                                msg.channel.send("```Inhouse lobby created. Type '!queue' to join the game, or '!cancel' to drop this inhouse```")
                             } else {
                                 msg.reply("A game is already being hosted by...")
                             }

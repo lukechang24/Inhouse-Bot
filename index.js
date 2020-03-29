@@ -15,7 +15,7 @@ bot.on("ready", () => {
     console.info(`${bot.user.tag} is ready to roll!`)
 })
 
-bot.on("message", msg => {
+bot.on("message", async msg => {
     const args = msg.content.split(/ +/)
     const command = args.shift().toLowerCase()
     console.info(`Called command: ${command}`)
@@ -23,7 +23,7 @@ bot.on("message", msg => {
         return
     }
     try {
-        bot.commands.get(command).execute(msg, args, bot, firebase)
+        await bot.commands.get(command).execute(msg, args, bot, firebase)
     } catch (error) {
         console.error(error)
         msg.reply('There was an error trying to execute that command!')
