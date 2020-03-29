@@ -19,9 +19,6 @@ bot.on("message", msg => {
     const args = msg.content.split(/ +/)
     const command = args.shift().toLowerCase()
     console.info(`Called command: ${command}`)
-    // if(msg.content.indexOf("@") >= 1 && msg.author.id === "231239316532101122") {
-    //     bot.commands.get("!backmeup").execute(msg, args)
-    // }
     if(!bot.commands.has(command)) {
         return
     }

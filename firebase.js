@@ -20,9 +20,13 @@ module.exports = {
     findUser: id => {
         return db.collection("users").doc(id)
     },
-    register: id => {
+    findStats: () => {
+        return db.collection("users")
+    },
+    register: (id, username) => {
         return db.collection("users").doc(id).set({
             id,
+            username,
             wins: 0,
             losses: 0,
             elo: 1200,
@@ -31,5 +35,8 @@ module.exports = {
     },
     findCurrentGame: () => {
         return db.collection("currentGame")
+    },
+    findMatchHistory: () => {
+        return db.collection("matchHistory")
     }
 }

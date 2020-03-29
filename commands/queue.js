@@ -24,8 +24,7 @@ module.exports = {
                                         })
                                         playerNames += `${username} \n`
                                     }
-                                    msg.channel.send(`\`\`\`Players: \n \n${playerNames}\`\`\``)
-                                    if(playerIds.length === 2) {
+                                    if(playerIds.length === 10) {
                                         firebase.findCurrentGame().get()
                                             .then(game => {
                                                 game.forEach(curGame => {
@@ -33,6 +32,7 @@ module.exports = {
                                                 })
                                             })
                                     }
+                                    msg.channel.send(`\`\`\`Players: \n \n${playerNames}${playerIds.length === 10 ? "\nType '!randomize' to assign teams based off average elos. GL HF!" : ""}\`\`\``)
                                 } else {
                                     msg.reply("You are already queued for this game")
                                 }

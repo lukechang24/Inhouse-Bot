@@ -1,7 +1,5 @@
 require("dotenv").config()
 
-const firebase = require("../firebase")
-
 module.exports = {
     name: "!register",
     description: "Registers the player into the database",
@@ -11,7 +9,7 @@ module.exports = {
                 if(user.exists) {
                     msg.reply("You are already registered as a player.")
                 } else {
-                    firebase.register(msg.author.id)
+                    firebase.register(msg.author.id, msg.author.username.toLowerCase())
                     msg.reply("You are now registered as a player.")
                 }
             })

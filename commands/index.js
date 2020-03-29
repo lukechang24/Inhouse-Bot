@@ -1,8 +1,11 @@
 module.exports = {
-    create: require("./createGame"),
-    queue: require("./queue"),
     register: require("./register"),
+    create: require("./create"),
+    queue: require("./queue"),
     randomize: require("./randomize"),
     winner: require("./winner"),
-    test: require("./test")
+    cancel: require("./cancel"),
+    stats: require("./stats"),
+    matchhistory: require("./matchHistory"),
+    commands: require("./commands")
 }
