@@ -40,11 +40,10 @@ module.exports = {
                             msg.reply("Only the room leader can randomize the teams")
                             return
                         }
-                        if(snap.data().players.length === 2) {
+                        if(snap.data().players.length === 10) {
                             const teams = makeItFair(snap.data().players)
                             if(teams) {
                                 const [team1, team2] = [...teams]
-                                console.log(team1, team2)
                                 firebase.findCurrentGame().doc(snap.id).update({team1, team2}).then(async () => {
                                     let teamOne = ""
                                     let teamTwo = ""

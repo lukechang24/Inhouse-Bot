@@ -15,7 +15,6 @@ module.exports = {
                         msg.reply(`\`\`\`${username}'s Profile \n\nElo: ${stats.elo} \nWins: ${stats.wins} \nLosses: ${stats.losses} \nWin streak: ${stats.winStreak}\`\`\``)
                     })
                 } else {
-                    console.log(msg.author.username.toLowerCase())
                     msg.reply("Unable to find that a player by that username in the database.")
                 }
             })

@@ -1,7 +1,5 @@
 require("dotenv").config()
 
-const firebase = require("../firebase")
-
 module.exports = {
     name: "!cancel",
     description: "Cancels the current inhouse queue",

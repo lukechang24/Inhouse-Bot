@@ -17,7 +17,6 @@ module.exports = {
                                 if(players.indexOf(msg.author.id) === -1) {
                                     playerIds.push(msg.author.id)
                                     players.push(user.data())
-                                    console.log(players)
                                     for(let i = 0; i < playerIds.length; i++) {
                                         const username = await bot.users.fetch(playerIds[i]).then(user => {
                                             return user.username

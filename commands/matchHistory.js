@@ -23,8 +23,6 @@ module.exports = {
                         const username2 = await bot.users.fetch(matches[i].team2[i].id).then(user => {
                             return user.username
                         })
-                        console.log(username1)
-                        console.log(count)
                         matchInfo += `${username1}               ${username2} \n`
                         if(i === matches[i].team1.length-1) {
                             matchInfo += "\n"
