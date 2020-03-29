@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const Firestore = require("@google-cloud/firestore")
+require("dotenv").config()
 
 admin.initializeApp({
     credential: admin.credential.cert({
