@@ -1,7 +1,5 @@
 require("dotenv").config()
 
-const firebase = require("../firebase")
-
 module.exports = {
     name: "!winner",
     description: "Records the results of the game",
